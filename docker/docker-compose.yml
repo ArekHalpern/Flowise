@@ -5,6 +5,7 @@ services:
         image: flowiseai/flowise
         restart: always
         environment:
+            - environment:
             - PORT=${PORT}
             - FLOWISE_USERNAME=${FLOWISE_USERNAME}
             - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
