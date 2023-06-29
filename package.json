@@ -13,7 +13,7 @@
         "build": "turbo run build",
         "build-force": "turbo run build --force",
         "dev": "turbo run dev --parallel",
-        "start": "run-script-os",
+        "start": "npx flowise start --FLOWISE_USERNAME={FLOWISE_USERNAME} --FLOWISE_PASSWORD={FLOWISE_PASSWORD}",
         "start:windows": "cd packages/server/bin && run start",
         "start:default": "cd packages/server/bin && ./run start",
         "clean": "npm exec -ws -- rimraf dist build",
@@ -22,7 +22,8 @@
         "lint": "eslint \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "lint-fix": "yarn lint --fix",
         "quick": "pretty-quick --staged",
-        "postinstall": "husky install"
+        "postinstall": "husky install",
+        "Start with login": 
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,md}": "eslint --fix"
