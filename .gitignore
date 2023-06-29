@@ -1,6 +1,8 @@
 # editor
 .idea
 .vscode
+flowise
+
 
 # dependencies
 **/node_modules
