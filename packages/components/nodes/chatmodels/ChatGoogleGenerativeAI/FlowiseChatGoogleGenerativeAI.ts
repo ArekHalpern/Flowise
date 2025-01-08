@@ -659,6 +659,16 @@ function zodToGeminiParameters(zodObj: any) {
     return rest
 }
 
+function sanitizeGeminiFunctionName(name: string): string {
+    // Must start with a letter or underscore
+    let sanitized = name.replace(/^[^a-zA-Z_]/, '_')
+    // Must only contain alphanumeric characters, underscores, dots, or dashes
+    sanitized = sanitized.replace(/[^a-zA-Z0-9_.-]/g, '_')
+    // Maximum length of 64 characters
+    sanitized = sanitized.slice(0, 64)
+    return sanitized
+}
+
 function convertToGeminiTools(structuredTools: (StructuredToolInterface | Record<string, unknown>)[]) {
     return [
         {
@@ -666,7 +676,7 @@ function convertToGeminiTools(structuredTools: (StructuredToolInterface | Record
                 if (isStructuredTool(structuredTool)) {
                     const jsonSchema = zodToGeminiParameters(structuredTool.schema)
                     return {
-                        name: structuredTool.name,
+                        name: sanitizeGeminiFunctionName(structuredTool.name),
                         description: structuredTool.description,
                         parameters: jsonSchema
                     }
